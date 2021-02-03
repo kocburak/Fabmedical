@@ -35,12 +35,15 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 80
+              containerPort: 3000
               protocol: TCP
+          env:
+            - name: CONTENT_API_URL
+              value: http://api:3001
           livenessProbe:
             httpGet:
               path: /
-              port: http
+              port: 3000
           readinessProbe:
             httpGet:
               path: /
